@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 public class RankingController {
 
@@ -19,10 +21,21 @@ public class RankingController {
     this.rankingService = rankingService;
   }
 
-  @RequestMapping(value = "/rank/reset", method = RequestMethod.GET)
+  @RequestMapping(value = "/rank/new", method = RequestMethod.GET)
   @ResponseBody
-  public void reset(@RequestParam(value = "name", defaultValue = "Anonymous")String name) {
-    rankingService.reset(name);
+  public void newRank(
+    @RequestParam(value = "userId")String userId,
+    @RequestParam(value = "wordsListId")String wordsListId,
+    @RequestParam(value = "score")String score) {
+    rankingService.addOne(Integer.parseInt(userId), Integer.parseInt(wordsListId), Integer.parseInt(score));
   }
+
+  @RequestMapping(value = "/rank/by-words", method = RequestMethod.GET)
+  @ResponseBody
+  public List<Ranking> newRank(
+    @RequestParam(value = "wordsListId")String wordsListId) {
+    return rankingService.byWordsList(Integer.parseInt(wordsListId));
+  }
+
 
 }
