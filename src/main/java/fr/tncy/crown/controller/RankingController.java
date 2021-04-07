@@ -4,10 +4,7 @@ import fr.tncy.crown.model.Ranking;
 import fr.tncy.crown.service.RankingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,7 @@ public class RankingController {
     this.rankingService = rankingService;
   }
 
+  @CrossOrigin(origins = "*")
   @RequestMapping(value = "/rank/new", method = RequestMethod.GET)
   @ResponseBody
   public void newRank(
@@ -30,6 +28,7 @@ public class RankingController {
     rankingService.addOne(Integer.parseInt(userId), Integer.parseInt(wordsListId), Integer.parseInt(score));
   }
 
+  @CrossOrigin(origins = "*")
   @RequestMapping(value = "/rank/by-words", method = RequestMethod.GET)
   @ResponseBody
   public List<Ranking> newRank(
