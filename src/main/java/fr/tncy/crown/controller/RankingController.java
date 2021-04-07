@@ -36,5 +36,12 @@ public class RankingController {
     return rankingService.byWordsList(Integer.parseInt(wordsListId));
   }
 
+  @CrossOrigin(origins = "*")
+  @RequestMapping(value = "/rank", method = RequestMethod.GET)
+  @ResponseBody
+  public List<Ranking> all() {
+    return rankingService.all();
+  }
+
 
 }
