@@ -12,4 +12,5 @@ public interface RankingService {
   public List<Ranking> byWordsList(int wordsList);
   public List<Ranking> byUser(int userId);
   public void addOne(int userId, int wordsList, int score);
+  public List<Ranking> all();
 }

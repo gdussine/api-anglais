@@ -52,4 +52,9 @@ public class RankingServiceImpl implements RankingService {
     r.setScore(score);
     repository.update(r);
   }
+
+  @Override
+  public List<Ranking> all() {
+    return repository.all();
+  }
 }
